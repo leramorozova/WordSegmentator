@@ -1,5 +1,4 @@
-# Таблицы в базе данных: characters, query (не нужна), train
-
+# Таблицы в базе данных: characters, train
 
 import sqlite3
 import random
