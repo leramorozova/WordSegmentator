@@ -9,7 +9,7 @@ _The project is dedicated to study on the effectiveness of one-layer neural netw
 * [**A base of training data**](https://github.com/leramorozova/WordSplitter/blob/master/characters.db)
 
 The base consists of two tables: the list of unique characters in training data and training data list itself. Training data vertorization has been performed with the use of standart scaling.
-The data has been compiled from starter educational sourses to produce artificial estricrion of vocabulary diversity. Training units are hierogliphic sentences splitted by punctuation.
+The data has been compiled from starter educational sources to produce artificial restricrion of vocabulary diversity. Training units are hierogliphic sentences splitted by punctuation.
 
 * [**A scrypt performing preparation of dataset**](https://github.com/leramorozova/WordSplitter/blob/master/dataset_maker.py)
 
@@ -17,11 +17,11 @@ The scrypt converts text files to dataset which is ready for using in training a
 
 * [**A scrypt perfoming construction of a NN**](https://github.com/leramorozova/WordSplitter/blob/master/main.py)
 
-There is a class of neural network, which includes methods of training ang cross validation. In addition, there are functions for validating hyperparametres of NN.
+There is a class of neural network, which includes methods of training and cross validation. In addition, there are functions for validation of NN hyperparametres.
 
 * [**A scrypt perfoming plot visualisation**](https://github.com/leramorozova/WordSplitter/blob/master/plotting.py)
 
-That was used while searching of optimal hyperparametres for NN.
+The one was used while searching optimal hyperparametres for NN.
 
 * [**A collection of plots**](https://github.com/leramorozova/WordSplitter/tree/master/plots)
 
