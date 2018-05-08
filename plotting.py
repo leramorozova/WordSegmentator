@@ -7,13 +7,13 @@ def ccv(x, y1, y2):
     plt.title('Accuracy')
     plt.xlabel('ITERATION')
     plt.ylabel('SCORE')
-    plt.savefig('./plots/total_accuracy.png', format='png', dpi=100)
+    plt.savefig('./plots/total_accuracy_bl.png', format='png', dpi=100)
     plt.clf()
     plt.plot(x, y2)
     plt.title('Sentence_match')
     plt.xlabel('ITERATION')
     plt.ylabel('SCORE')
-    plt.savefig('./plots/total_smatch.png', format='png', dpi=100)
+    plt.savefig('./plots/total_smatch_bl.png', format='png', dpi=100)
     
 # графики по гиперпараметрам
 

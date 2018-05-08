@@ -27,6 +27,14 @@ The one was used while searching optimal hyperparametres for NN.
 
 The product of the scrypt mentioned above.
 
+* [**Collection of sentences splitted by punctuation**](https://github.com/leramorozova/WordSplitter/blob/master/train.txt)
+
+The texts collected from textboox and educational web-sources for starter learners.
+
+* [**Collection of spaces sentences**](https://github.com/leramorozova/WordSplitter/blob/master/train_spaces.txt)
+
+The same texts splitted manually for trainig.
+
 ---
 
 ### NN configurations:
