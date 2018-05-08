@@ -31,7 +31,7 @@ The product of the scrypt mentioned above.
 
 The texts collected from textboox and educational web-sources for starter learners.
 
-* [**Collection of spaces sentences**](https://github.com/leramorozova/WordSplitter/blob/master/train_spaces.txt)
+* [**Collection of spaced sentences**](https://github.com/leramorozova/WordSplitter/blob/master/train_spaces.txt)
 
 The same texts splitted manually for trainig.
 
