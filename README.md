@@ -1,6 +1,6 @@
-# Applying of neural network technologies to word splitting of Сhinese hierogliphic texts
+# Applying of neural network technologies to word segmentation of Сhinese hierogliphic texts
 
-_The project is dedicated to study on the effectiveness of one-layer neural network for meeting the challenge of word-splitting of hierogliphic Chinese texts for [Russian-Chinese parallel corpus](http://www.ruscorpora.ru/search-para-zh.html)_.
+_The project is dedicated to study on the effectiveness of one-layer neural network for meeting the challenge of word segmentation of hierogliphic Chinese texts for [Russian-Chinese parallel corpus](http://www.ruscorpora.ru/search-para-zh.html)_.
 
 ---
 
@@ -33,7 +33,7 @@ The texts collected from textboox and educational web-sources for starter learne
 
 * [**Collection of spaced sentences**](https://github.com/leramorozova/WordSplitter/blob/master/train_spaces.txt)
 
-The same texts splitted manually for trainig.
+The same texts segmented manually in order to train the NN.
 
 ---
 
