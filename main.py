@@ -8,8 +8,21 @@ import scipy.special  # для функции сигмоиды
 import plotting
 import random
 
-# создание класса
 
+# небольшой костыль для сидирования весов
+
+# нормальное распределение Гаусса (для более сложной системы весов, см. док
+# аргументы - центр нормального распределения, стандартная девиация (ширина дистрибуции),
+# кортеж параметров (строка, столбец)
+# pow(число, его степень)
+
+hidden_nodes = 55
+np.random.seed(0)
+rand_wih = np.random.normal(0.0, pow(dm.find_max()[0], -0.5), (hidden_nodes, dm.find_max()[0]))
+np.random.seed(1)
+rand_who = np.random.normal(0.0, pow(hidden_nodes, -0.5), (dm.find_max()[1], hidden_nodes))
+
+# создание класса
 
 class NeuralNetwork:
 
@@ -20,14 +33,10 @@ class NeuralNetwork:
         self.inodes = inputnodes
         self.hnodes = hiddennodes
         self.onodes = outputnodes
-        # нормальное распределение Гаусса (для более сложной системы весов, см. док
-        # аргументы - центр нормального распределения, стандартная девиация (ширина дистрибуции),
-        # кортеж параметров (строка, столбец)
-        # pow(число, его степень)
-        np.random.seed(0)
-        self.wih = np.random.normal(0.0, pow(self.inodes, -0.5), (self.hnodes, self.inodes))
-        np.random.seed(1)
-        self.who = np.random.normal(0.0, pow(self.hnodes, -0.5), (self.onodes, self.hnodes))
+#        self.wih = np.random.normal(0.0, pow(self.inodes, -0.5), (self.hnodes, self.inodes))
+        self.wih = rand_wih
+#        self.who = np.random.normal(0.0, pow(self.hnodes, -0.5), (self.onodes, self.hnodes))
+        self.who = rand_who
         self.lr = learningrate
         # сигмоида
         self.activation_function = lambda x: scipy.special.expit(x)
@@ -84,6 +93,7 @@ def epochs_optimisation(arr):
     plotting.epochs(acc, sm, arr)
 
 # подбираем количество нейронов в скрытом слое
+# TODO: fix it in view of seed
 
 def hidden_nodes_optimization(arr):
     sm = []
@@ -171,7 +181,6 @@ def complete_cv():
         print('Perfoming iteration ' + str(i+1) + '/7')
         # создаем объект класса
         input_nodes = dm.find_max()[0]
-        hidden_nodes = 51  # экспериментируем
         output_nodes = dm.find_max()[1]
 
         learning_rate = 0.18
@@ -213,13 +222,5 @@ def performance():
 
 if __name__ == '__main__':
     performance()
-
-#hn = [x for x in range(60, 1308, 150)] + [1308]
-
-#hidden_nodes_optimization(hn)
-
-
-#Accuracy: 0.136235827664
-#Sentence match: 89.01994169096203 %
 
 

@@ -114,7 +114,7 @@ def vec_train(): # вставляю в базу данных векторизо�
 
 # массив кортежей ([дано], [цель]), тренировочные данные
 def train_set():
-    train_update()
+#    train_update()
     print('Creating dataset...\n')
     conn = sqlite3.connect('characters.db')
     c = conn.cursor()
