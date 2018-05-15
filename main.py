@@ -6,8 +6,10 @@ import sqlite3
 import dataset_maker as dm
 import scipy.special  # для функции сигмоиды
 import plotting
+import random
 
 # создание класса
+
 
 class NeuralNetwork:
 
@@ -83,7 +85,7 @@ def epochs_optimisation(arr):
 
 # подбираем количество нейронов в скрытом слое
 
-def hidden_nodes_optinization(arr):
+def hidden_nodes_optimization(arr):
     sm = []
     acc = []
     print('Validating hidden nodes...')
@@ -97,7 +99,7 @@ def hidden_nodes_optinization(arr):
 
 # подбираем шаг обучения
 
-def learning_rate_optinization(arr):
+def learning_rate_optimization(arr):
     sm = []
     acc = []
     print('Validating learning rate...')
@@ -169,7 +171,7 @@ def complete_cv():
         print('Perfoming iteration ' + str(i+1) + '/7')
         # создаем объект класса
         input_nodes = dm.find_max()[0]
-        hidden_nodes = 550  # экспериментируем
+        hidden_nodes = 51  # экспериментируем
         output_nodes = dm.find_max()[1]
 
         learning_rate = 0.18
@@ -211,3 +213,13 @@ def performance():
 
 if __name__ == '__main__':
     performance()
+
+#hn = [x for x in range(60, 1308, 150)] + [1308]
+
+#hidden_nodes_optimization(hn)
+
+
+#Accuracy: 0.136235827664
+#Sentence match: 89.01994169096203 %
+
+

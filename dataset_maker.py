@@ -35,6 +35,7 @@ def characters_base():
 # sample - избавляемся от повторяющихся значений, не слишком влияя на частоту
 # normalized_sample - ставим числа в диапазон от 0.01 до 1.0 для формирования входных сигналов
 
+    random.seed(3)
     rand_sample = [random.uniform(0, 1) for i in range(len(d))]
     for i, key in enumerate(d):
         c.execute('''
