@@ -43,7 +43,7 @@ The same texts segmented manually in order to train the NN.
 
 **Amount of cv-blocks:** 7 (125 units per block)
 
-**Amount of nodes in hidden layer:** 550
+**Amount of nodes in hidden layer:** 51
 
 **Amount of the training cycles:** 270
 
