@@ -137,18 +137,33 @@ def learn(n, train_data, cycles):
 def test(n, query_data):
     scorecard = []  # 1 - истина, 0 - ложь
     sentence_match = []
+    tp = 0  # true positive
+    tn = 0  # true negative
+    fn = 0  # false negative
+    fp = 0  # false positive
     for phrase in query_data:
         output = n.query(phrase[0])
         correct_label = phrase[1]  # это для вычисления доли ошибок
         # формирую вариант выхода, идентичый ожидаемому, чтобы вычислить долю ошибки
         label = []
         for el in output:
-            if el > 0.5:
+            if el > 0.75:
                 label.append(0.99)
             else:
                 label.append(0.01)
         match = len([1 for i in range(len(label)) if label[i] == correct_label[i]]) / len(label)
         sentence_match.append(match)
+        for i in range(len(output)):
+            if label[i] == correct_label[i] == 0.99:
+                tp += 1
+            elif label[i] == correct_label[i] == 0.01:
+                tn += 1
+            elif label[i] == 0.99 and correct_label[i] == 0.01:
+                fp += 1
+            elif label[i] == 0.01 and correct_label[i] == 0.99:
+                fn += 1
+            else:
+                print('metric error')
         label = ' '.join(map(str, label)) + ' 0.01' * (dm.find_max()[1] - len(label))
         if label == ' '.join(map(str, correct_label)):
             scorecard.append(1)
@@ -156,11 +171,13 @@ def test(n, query_data):
             scorecard.append(0)
             pass
         pass
-
+    precision = tp / (tp + fp)
+    recall = tp / (tp + fn)
+    f = 2 * (precision * recall) / (precision + recall)
     scorecard = np.array(scorecard)
     accuracy = scorecard.sum() / len(scorecard)
     sentence_match = sum(sentence_match) / len(sentence_match)
-    return accuracy, sentence_match
+    return accuracy, sentence_match, precision, recall, f
 
 
 # кросс-валидация, скользящий контроль - обучаю 7 раз на разных блоках, смотрю среднюю оценку
@@ -171,9 +188,11 @@ def complete_cv():
     cv_lower = 0
     cv_upper = 126
 
-
+    recalls = []
+    precisions = []
     accuracies = []
     sentence_matches = []
+    fs = []
 
     print('CV is commenced\n')
 
@@ -195,30 +214,41 @@ def complete_cv():
         print('Training...')
         learn(n, train_data, epochs)
         print('Trained succesfully')
-        accuracy, sentence_match = test(n, query_data)
+        accuracy, sentence_match, precision, recall, f = test(n, query_data)
         print('Tested successfully')
         print('Accuracy (amount of full match): ', accuracy)
-        print('Sentence match: ', sentence_match * 100, '%\n')
+        print('Sentence match: ', sentence_match * 100, '%')
+        print('f: ', f)
+        print('Precision: ', precision,)
+        print('Recall: ', recall, '\n')
+        recalls.append(recall)
+        precisions.append(precision)
         accuracies.append(accuracy)
         sentence_matches.append(sentence_match)
+        fs.append(f)
 
         cv_lower += 125
         cv_upper += 125
 
     av_accuracy = sum(accuracies) / len(accuracies)
     av_sentence_match = sum(sentence_matches) / len(sentence_matches)
-    return accuracies, sentence_matches, av_accuracy, av_sentence_match
+    av_recall = sum(recalls) / len(recalls)
+    av_precision = sum(precisions) / len(precisions)
+    av_f = sum(fs) / len(fs)
+    return accuracies, sentence_matches, av_accuracy, av_sentence_match, av_recall, av_precision, av_f
 
 
 # посмотрим, что получается
 
 def performance():
-    accuracies, sentence_matches, av_accuracy, av_sentence_match = complete_cv()
+    accuracies, sentence_matches, av_accuracy, av_sentence_match, av_recall, av_precision, av_f = complete_cv()
     xes = [x for x in range(1, 8)]
     print('Plotting...')
     plotting.ccv(xes, accuracies, sentence_matches)
-    print('Final score:\n Accuracy: ' + str(av_accuracy) + '\n Sentence match: ' + str(av_sentence_match * 100) + ' %\n\n')
-
+    print('Final score:\n Accuracy: ' + str(av_accuracy) + '\n Sentence match: ' + str(av_sentence_match * 100) + ' %')
+    print('F: ', av_f)
+    print('Precision: ', av_precision)
+    print('Recall: ', str(av_recall) + '\n\n')
 
 if __name__ == '__main__':
     performance()
