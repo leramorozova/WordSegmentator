@@ -1,0 +1,346 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Jacobs Landscape Poster
+% LaTeX Template
+% Version 1.0 (29/03/13)
+%
+% Created by:
+% Computational Physics and Biophysics Group, Jacobs University
+% https://teamwork.jacobs-university.de:8443/confluence/display/CoPandBiG/LaTeX+Poster
+% 
+% Further modified by:
+% Nathaniel Johnston (nathaniel@njohnston.ca)
+%
+% This template has been downloaded from:
+% http://www.LaTeXTemplates.com
+%
+% 
+% Masaryk University presentation themes were downloaded from:
+% https://www.overleaf.com/gallery/tagged/muni
+%
+% and ported into Jacobs Landscape Poster by:
+% Jumaidil Awal (ideal1st.here@googlemail.com)
+% 
+% Jacobs Landscape Poster License:
+% CC BY-NC-SA 3.0 (http://creativecommons.org/licenses/by-nc-sa/3.0/)
+%
+% Masaryk University's fibeamer theme license:
+% Copyright 2015  Vít Novotný <witiko@mail.muni.cz>
+% Faculty of Informatics, Masaryk University (Brno, Czech Republic)
+% under Latex Project Public License
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
+%----------------------------------------------------------------------------------------
+
+\documentclass[final]{beamer}
+
+\usepackage[russian]{babel}   %% загружает пакет многоязыковой вёрстки
+\usepackage{fontspec}      %% подготавливает загрузку шрифтов Open Type, True Type и др.
+\defaultfontfeatures{Ligatures={TeX},Renderer=Basic}
+
+\usepackage[scale=1.20]{beamerposter} % Use the beamerposter package for laying out the poster
+
+%\usetheme{confposter} % Use the confposter theme supplied with this template
+\usetheme[faculty=chemo]{fibeamer} % Uncomment to use Masaryk University's fibeamer theme instead.
+
+%\setbeamercolor{block title}{fg=ngreen,bg=white} % Colors of the block titles
+%\setbeamercolor{block body}{fg=black,bg=white} % Colors of the body of blocks
+%\setbeamercolor{block alerted title}{fg=white,bg=dblue!70} % Colors of the highlighted block titles
+%\setbeamercolor{block alerted body}{fg=black,bg=dblue!10} % Colors of the body of highlighted blocks
+% Many more colors are available for use in beamerthemeconfposter.sty
+
+%-----------------------------------------------------------
+% Define the column widths and overall poster size
+% To set effective sepwid, onecolwid and twocolwid values, first choose how many columns you want and how much separation you want between columns
+% In this template, the separation width chosen is 0.024 of the paper width and a 4-column layout
+% onecolwid should therefore be (1-(# of columns+1)*sepwid)/# of columns e.g. (1-(4+1)*0.024)/4 = 0.22
+% Set twocolwid to be (2*onecolwid)+sepwid = 0.464
+% Set threecolwid to be (3*onecolwid)+2*sepwid = 0.708
+
+\newlength{\sepwid}
+\newlength{\onecolwid}
+\newlength{\twocolwid}
+\newlength{\threecolwid}
+\setlength{\paperwidth}{46.8in} % A0 width: 46.8in
+\setlength{\paperheight}{33.1in} % A0 height: 33.1in
+\setlength{\sepwid}{0.024\paperwidth} % Separation width (white space) between columns
+\setlength{\onecolwid}{0.21\paperwidth} % Width of one column
+\setlength{\twocolwid}{0.451\paperwidth} % Width of two columns
+\setlength{\threecolwid}{0.678\paperwidth} % Width of three columns
+%\setlength{\topmargin}{-0.5in} % Reduce the top margin size
+%-----------------------------------------------------------
+
+\usepackage{graphicx}  % Required for including images
+
+\usepackage{booktabs} % Top and bottom rules for tables
+
+%----------------------------------------------------------------------------------------
+%	TITLE SECTION 
+%----------------------------------------------------------------------------------------
+
+\title{Применение нейросетевых моделей в словоделении китайских текстов} % Poster title
+
+\author{Морозова Валерия (руководитель: к. ф. н., доц. Сичинава Д. В.) } % Author(s)
+
+\institute{Высшая Школа Экономики, Школа Лингвистики, 2018} % Institution(s)
+
+%----------------------------------------------------------------------------------------
+
+\begin{document}
+\addtobeamertemplate{block end}{}{\vspace*{2ex}} % White space under blocks
+\addtobeamertemplate{block example end}{}{\vspace*{2ex}} % White space under example blocks
+\addtobeamertemplate{block alerted end}{}{\vspace*{2ex}} % White space under highlighted (alert) blocks
+
+\setlength{\belowcaptionskip}{2ex} % White space under figures
+\setlength\belowdisplayshortskip{2ex} % White space under equations
+%\begin{darkframes} % Uncomment for dark theme, don't forget to \end{darkframes}
+\begin{frame} % The whole poster is enclosed in one beamer frame
+
+%==========================Begin Head===============================
+  \begin{columns}
+   \begin{column}{\linewidth}
+    \vskip1cm
+    \centering
+    \usebeamercolor{title in headline}{\color{fg}\Huge{\textbf{\inserttitle}}\\[0.5ex]}
+    \usebeamercolor{author in headline}{\color{fg}\Large{\insertauthor}\\[1ex]}
+    \usebeamercolor{institute in headline}{\color{fg}\large{\insertinstitute}\\[1ex]}
+    \vskip1cm
+   \end{column}
+   \vspace{1cm}
+  \end{columns}
+ \vspace{1cm}
+
+%==========================End Head===============================
+
+\begin{columns}[t] % The whole poster consists of three major columns, the second of which is split into two columns twice - the [t] option aligns each column's content to the top
+
+\begin{column}{\sepwid}\end{column} % Empty spacer column
+
+\begin{column}{\onecolwid} % The first column
+
+%----------------------------------------------------------------------------------------
+%	OBJECTIVES
+%----------------------------------------------------------------------------------------
+
+\begin{exampleblock}{Введение}
+
+Параллельный корпус - лингвистический ин- струмент, применяющийся в машинном пере- воде и лингвистических исследованиях. При создании русско-китайского параллельного подкорпуса возникает особенная сложность: проблема токенизации китайских текстов ввиду отсутствия традиции постановки про- бельных символов.
+\begin{itemize}
+\item \textbf{Предмет проекта}: проблема словоделения в китайских текстах алгоритмическими ме-тодами. 
+\item \textbf{Цель проекта}: исследование эффективности алгоритма, основанного на искусственной нейронной сети, для реализации автомати- ческого словоделения китайских текстов.
+\end{itemize}
+Подобный подход можно назвать инноваци- онным, так как, по данным автора работы, на сегодняшний день методики машинного обу- чения в сфере корпусной лингвистики не испо- льзовались.
+
+\end{exampleblock}
+
+%----------------------------------------------------------------------------------------
+%	INTRODUCTION
+%----------------------------------------------------------------------------------------
+
+\begin{exampleblock}{Текущие методы словоделения}
+
+В русско-китайском корпусе используется \textbf{«жадный алгоритм»}, созданный \textbf{Е.С. Кузь- менко} и улучшенный \textbf{М.Н. Якубовым}. Опор- ный словарь - \textbf{CEDICT}. Принцип работы алго- ритма заключается в поиске максимально многосложных комбинаций, зафиксирован- ных в словаре.
+Точность данного алгоритма высока (результат проверки на тестовой вы- борке — \textbf{79 \%}), но требует редактуры выход- ного текста человеком. Препятствиями для «жадного алгоритма» являются имена собс- твенные, не содержащиеся в словаре, и ие- роглифы, которые могут встречаться как оди- ночно, так и в сочетании с другими иерогли- фами.
+\end{exampleblock}
+
+%----------------------------------------------------------------------------------------
+
+\end{column} % End of the first column
+
+\begin{column}{\sepwid}\end{column} % Empty spacer column
+
+\begin{column}{\twocolwid} % Begin a column which is two columns wide (column 2)
+
+\begin{columns}[t,totalwidth=\twocolwid] % Split up the two columns wide column
+
+\begin{column}{\onecolwid}\vspace{-.74in} % The first column within column 2 (column 2.1)
+
+%----------------------------------------------------------------------------------------
+%	MATERIALS
+%----------------------------------------------------------------------------------------
+
+\begin{exampleblock}{Модель ИНС}
+
+\begin{figure}
+\includegraphics[width=0.9\linewidth]{img/neuro.jpeg}
+\caption{Модель искусственного нейрона}
+\end{figure}
+
+В основе искусственной нейронной сети лежит модель мозга живого существа. Дан- ный алгоритм основан на модели \textbf{многослой- ного персептона прямого распространения} с одним скрытым слоем. Синаптические веса генерировались случайным образом по "the rule of thumb". Функция активации - \textbf{сигмоида}. Способ обучения - \textbf{метод обратного распрос- транения ошибки}, дополненный \textbf{ методом градиентного спуска}.
+
+
+\end{exampleblock}
+
+%----------------------------------------------------------------------------------------
+
+\end{column} % End of column 2.1
+\begin{column}{\sepwid}\end{column} % Empty spacer column
+
+\begin{column}{\onecolwid}\vspace{-.74in} % The second column within column 2 (column 2.2)
+
+%----------------------------------------------------------------------------------------
+%	METHODS
+%----------------------------------------------------------------------------------------
+
+\begin{exampleblock}{Подготовка данных}
+
+Все подготовленные данные можно найти в файле \textbf{characters.db}, в репозитории проекта. В базе данных содержится тренировочная вы- борка, собранная из образовательных ресур- сов и учебников для начинающих изучать китайский язык. \newline
+Векторизация данных происходила в виде создания матрицы признаков из одного параметра — количества употреблений в данном датасете, который был масшта- бирован в диапазоне (0.01; 1]. \textbf{Входной вектор} - массив признаков, замещающих иероглифы. \textbf{Целевой вектор} состоял из на- бора чисел \textbf{0.99} (соответствует наличию иероглифа в данной позиции) и \textbf{0.01} (соответствует пробелу в данной позиции). В датасете фигурировало \textbf{434 различных иероглифа}, и \textbf{26\%} из них - уникальные. Общее качество на тестовой выборке низкое.
+
+\end{exampleblock}
+
+%----------------------------------------------------------------------------------------
+
+\end{column} % End of column 2.2
+
+\end{columns} % End of the split of column 2 - any content after this will now take up 2 columns width
+
+%----------------------------------------------------------------------------------------
+%	IMPORTANT RESULT
+%---------------------------------------------------------------------------------------- 
+
+%----------------------------------------------------------------------------------------
+
+\begin{columns}[t,totalwidth=\twocolwid] % Split up the two columns wide column again
+
+\begin{column}{\onecolwid} % The first column within column 2 (column 2.1)
+
+%----------------------------------------------------------------------------------------
+%	MATHEMATICAL SECTION
+%----------------------------------------------------------------------------------------
+\begin{exampleblock}{Конфигурации ИНС}
+
+Разбиение выборки на обучающую и тестовую производилось \textbf{методом кросс-валидации}. Число блоков - 7. 6 блоков использовались для обучения, 1 откладывался для тестирования. Обучение и тестирование повторялось 7 раз с разными комбинациями блоков, итоговая оценка - средняя по итерациям. 
+\begin{itemize}
+\item \textbf{Всего единиц данных:} 875 (750 тренировочных)
+\item \textbf{Число обучающих циклов:} 270 на блок
+\item \textbf{Шаг обучения:} 0.18
+\item \textbf{Количество нейронов на скрытом слое:} 51
+\end{itemize} 
+Все параметры, кроме количества нейронов на скрытом слое, подобраны опытным путем. Для последнего использовались имперические методы.
+
+\end{exampleblock}
+
+%----------------------------------------------------------------------------------------
+
+\end{column} % End of column 2.1
+\begin{column}{\sepwid}\end{column} % Empty spacer column
+
+\begin{column}{\onecolwid} % The second column within column 2 (column 2.2)
+
+%----------------------------------------------------------------------------------------
+%	RESULTS
+%----------------------------------------------------------------------------------------
+
+\begin{exampleblock}{Результаты обучения}
+
+\begin{table}
+\vspace{2ex}
+\begin{tabular}{l l l l l l}
+\toprule
+\textbf{Разм. Выб.} & \textbf{Валид.} & \textbf{Accur.} & \textbf{S. match} & \textbf{Pres.} & \textbf{Rec.} \\
+\midrule
+0 & нет & 0 & 39\% & 21\% & 50\% \\
+92 & нет & 0 & 82\% & 52\% & 59\% \\
+750 & нет & 0.12 & 88\% & 63\% & 65\% \\
+750 & да & 0.216 & 92\%& 75\% & 77\% \\
+\bottomrule
+\end{tabular}
+\caption{Результаты валидации ИНС}
+\end{table}
+
+ИНС демонстрирует одинаковую зависимость как от размерности выборки, так и от валидации гиперпараметров. Также, возможно, есть зависимость от состава выборки — 
+
+\end{exampleblock}
+
+%----------------------------------------------------------------------------------------
+
+\end{column} % End of column 2.2
+
+\end{columns} % End of the split of column 2
+
+\end{column} % End of the second column
+
+\begin{column}{\sepwid}\end{column} % Empty spacer column
+
+\begin{column}{\onecolwid} % The third column
+
+%----------------------------------------------------------------------------------------
+%	CONCLUSION
+%----------------------------------------------------------------------------------------
+
+\begin{exampleblock}{Заключение}
+
+Величина метрик на данный момент остается неудовлетворительно низкой и непригодной к внедрению в работу русско-китайского па- раллельного корпуса. Тем не менее, ввиду демонстрации высокой зависимости от тре- нировочных данных, есть вероятность значи- тельного повышения качества за счет увели- чения датасета.
+
+\end{exampleblock}
+
+%----------------------------------------------------------------------------------------
+%	ADDITIONAL INFORMATION
+%----------------------------------------------------------------------------------------
+
+\begin{exampleblock}{Использованные методы}
+\begin{itemize}
+\item \textbf{Язык программирования:} python 3.5
+\item \textbf{Модули:} NumPy, SciPy, SQLite3, MatPlotLib
+\item \textbf{Метрики:} Accuracy, Sentence match, Precision, Recall
+\end{itemize}
+
+\end{exampleblock}
+
+%----------------------------------------------------------------------------------------
+%	REFERENCES
+%----------------------------------------------------------------------------------------
+
+\begin{exampleblock}{Литература}
+
+\begin{enumerate}
+\item \textbf{Якубов М.Н.} Построение китайско-русского корпуса параллельных текстов: проблемы выравнивания, словоделения и лексико-семантической разметки. \textit{2017.}
+\item \textbf{Forsyth A.D.} Computer vision: a modern approach.\textit{ Pearson Education, Inc., 2003.}
+\item \textbf{Rashid T.} Make your own neural network. 1 edition.\textit{ CreateSpace Independent Publishing Platform, 2016.}
+\item \textbf{Бураков М.В.} Нейронные сети и нейроконтроллеры. — \textit{СПб.: ГУАП, 2013.}
+\item  \textbf{Рудой Г.И.} Выбор функции активации при прогнозировании нейронными сетями // Машинное обучение и анализ данных. —\textit{ М.: Вычислительный центр им. А.А. Дородницына РАН, 2011.}
+\end{enumerate}
+% \nocite{*} % Insert publications even if they are not cited in the poster
+% \small{\bibliographystyle{unsrt}
+% \bibliography{sample}\vspace{1cm}}
+\end{exampleblock}
+
+%----------------------------------------------------------------------------------------
+%	ACKNOWLEDGEMENTS
+%----------------------------------------------------------------------------------------
+
+%\setbeamercolor{block title}{fg=red,bg=white} % Change the block title color
+
+%\begin{exampleblock}{Acknowledgements}
+
+%\small{\rmfamily{Nam mollis tristique neque eu luctus. Suspendisse rutrum congue nisi sed convallis. Aenean id neque dolor. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.}} \\
+
+%\end{exampleblock}
+
+%----------------------------------------------------------------------------------------
+%	CONTACT INFORMATION
+%----------------------------------------------------------------------------------------
+
+%\setbeamercolor{block alerted title}{fg=black,bg=norange} % Change the alert block title colors
+%\setbeamercolor{block alerted body}{fg=black,bg=white} % Change the alert block body colors
+
+\begin{block}{Репозиторий проекта}
+
+\href{https://github.com/leramorozova/WordSegmentator}{github.com/leramorozova/WordSegmentator}
+
+\end{block}
+%----------------------------------------------------------------------------------------
+
+\end{column} % End of the third column
+
+\begin{column}{\sepwid}\end{column} % Empty spacer column
+
+\end{columns} % End of all the columns in the poster
+
+\end{frame} % End of the enclosing frame
+%\end{darkframes} % Uncomment for dark theme
+\end{document}
+
